@@ -1,0 +1,40 @@
+# Langchain Packages
+
+transformers
+accelerate
+langchain
+bitsandbytes
+torch
+ipywidgets
+duckduckgo-search 
+youtube_search 
+wikipedia
+numexpr
+serpapi
+google-search-results
+langchain-mongodb
+
+# FastAPI Packages
+
+uvicorn
+python-dotenv
+pydantic
+fastapi
+
+# Mongo DB
+
+mongoengine
+pymongo
+
+# Addiotional Package
+
+python-jose
+bcrypt==4.0.1
+passlib[bcrypt]
+pyjwt
+pyotp
+uuid
+jose
+python-dotenv
+email_validator
+python-multipart
