@@ -39,3 +39,6 @@ jose
 python-dotenv
 email_validator
 python-multipart
+
+google.generativeai
+langchain_google_genai
