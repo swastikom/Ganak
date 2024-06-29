@@ -11,27 +11,27 @@ from langchain.memory import ConversationBufferMemory
 
 
 from functions.auth import get_current_user
+from functions.chatbot_functions import delete_chat_memory, memory
 from models.chats_model import ChatInput
 
 
-import os
 
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDSgKtXIi2b7ZaW-nBRI-dL6Yz9zgNN4ok"
 
 router = APIRouter()
 
 class Tags(Enum):
     chatbot = "Chatbot Routes"
 
-memory = ConversationBufferMemory(return_messages=True)
+
 
 
 
 
 @router.post("/users/me/save_contexts", tags=[Tags.chatbot])
 async def save_contexts( current_user: User = Depends(get_current_user)):
-    memory.clear()
+    delete_chat_memory()
+    
     try:
         prompt = f''' You are a great mental healht therapist. Here's an example of a conversation between a mental health therapist and a student:
 
