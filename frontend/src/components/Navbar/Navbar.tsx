@@ -88,27 +88,7 @@ export default function Navbar({
             <ChatHistory />
           </div>
           <div className="account  font-bold  z-20 bg-[#202123] border-t border-gray-500 shadow  ">
-            <div className=" self-stretch mr-4 w-full mb-2">
-              <select
-                value={selectedModal}
-                onChange={(e) => setModal(e.target.value as ModalList)}
-                className="border border-gray-300    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                {Object.keys(groupedModels).map((group) => (
-                  <optgroup
-                    label={group.toUpperCase()}
-                    key={group}
-                    // disabled={group.startsWith("dall-e")}
-                  >
-                    {groupedModels[group].map((modal) => (
-                      <option value={modal} key={modal}>
-                        {modal}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-            </div>
+            
             <div className="[&>.options]:focus-within:visible">
               <button
                 type="button"

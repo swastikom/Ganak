@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const CodeTab = () => {
   return (
-    <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
+    <div className="overflow-hidden bg-[#0B0B0F] w-full">
       <MacbookScroll
         title={
           <div className="flex flex-col gap-12">

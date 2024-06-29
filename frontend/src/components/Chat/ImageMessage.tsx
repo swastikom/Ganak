@@ -6,6 +6,8 @@ import ImageSkeleton from "../Skeleton/ImageSkeleton";
 // import { downloadOutline, checkmarkOutline } from "ionicons/icons";
 import { useState } from "react";
 import { ChatMessageType } from "../../store/store";
+import { IonIcon } from "@ionic/react";
+import { checkmarkOutline, downloadOutline } from "ionicons/icons";
 
 type Props = {
   index: number;
@@ -24,7 +26,7 @@ export default function ImageMessage({ index, chat }: Props) {
   return (
     <div className="flex items-start w-full">
       <div className="mr-4  rounded-md flex items-center flex-shrink-0">
-        <Avatar className=" h-11 w-11" src="/imgs/bot.webp" />
+        <Avatar className=" h-11 w-11" src="gemini-star.png" />
       </div>
       <div className=" image border-4 border-teal-700 rounded flex-grow">
         {loading && (
@@ -43,11 +45,11 @@ export default function ImageMessage({ index, chat }: Props) {
             className="edit md:ml-8 text-gray-500 dark:text-gray-200 text-xl"
             onClick={handleDownload}
           >
-            {/* <IonIcon icon={downloadOutline} /> */}
+            <IonIcon icon={downloadOutline} />
           </button>
         ) : (
           <span className="dark:text-gray-200 text-gray-500 text-xl">
-            {/* <IonIcon icon={checkmarkOutline} /> */}
+            <IonIcon icon={checkmarkOutline} />
           </span>
         )}
       </div>

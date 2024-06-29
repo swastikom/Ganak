@@ -16,14 +16,14 @@ export default function DefaultIdea({
   return (
     <div
       className={classNames(
-        "md:grid md:grid-cols-2 md:grid-rows-1 md:items-stretch md:gap-2 ",
+        "md:flex w-full md:gap-2 md:justify-between ",
         myclassNames
       )}
     >
       {ideas.map((i) => (
         <button
           key={i.idea}
-          className="border inline-flex dark:border-gray-500 border-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 mb-2  w-full text-left p-2 group rounded-md  shadow flex-1 md:flex-row md:items-center"
+          className=" inline-flex bg-gradient-to-b from-[#1e1f20] to-transparent  dark:hover:bg-gray-700 mb-2  w-[100px] h-[250px] text-left p-2 group rounded-[15px]  shadow flex-1 md:flex-row md:items-center"
           onClick={() => {
             addChat(createMessage("user", i.moreContext, "text"));
             addChat(createMessage("assistant", "", "text"));

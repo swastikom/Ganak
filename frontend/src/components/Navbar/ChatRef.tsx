@@ -186,7 +186,7 @@ export default function ChatRef({ chat }: Props) {
 
   function handleDeleteChats(id: string) {
     deleteChat(id);
-    setConfirmDeleteChat(false);
+    setConfirmDeleteChat(true);
   }
 
   return (

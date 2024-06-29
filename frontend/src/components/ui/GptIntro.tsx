@@ -12,9 +12,9 @@ export default function GptIntro() {
   return (
     <>
       
-      <div className=" h-96 flex items-start justify-center">
+      <div className=" flex items-start justify-center">
         <h1 className=" text-4xl font-bold mt-5 text-center text-gray-300">
-          Ganak
+          GANAK
         </h1>
       </div>
     </>

@@ -5,14 +5,19 @@ import React from "react";
 import { AuroraBackground } from "./ui/aurora-background";
 import { Button } from "./ui/moving-border";
 import Link from "next/link";
+import { WavyBackground } from "./ui/wavy-background";
+import { useRouter } from "next/navigation";
 
 
 const HomePage = () => {
-  
+  const router = useRouter()
+  const handleChange = () => {
+    router.push('/chat')
+  }
 
   return (
-    <AuroraBackground>
-    <motion.div
+    <WavyBackground>
+      <motion.div
       initial={{ opacity: 0.0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
@@ -20,7 +25,7 @@ const HomePage = () => {
         duration: 0.8,
         ease: "easeInOut",
       }}
-      className="relative flex flex-col gap-4 items-center justify-center px-4"
+      className="relative flex flex-col gap-4 items-center justify-center px-4 text-white"
     >
       <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
       AI for every developer
@@ -29,14 +34,16 @@ const HomePage = () => {
       Build with state-of-the-art generative models and tools to make AI helpful for everyone
       </div>
       
-      <Button
-        borderRadius="1.75rem"
-        className="bg-gradient-to-tr from-[#1d8efc] to-[#e85169] dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 px-3 text-[15px]"
+      <div onClick={handleChange}>
+      <button
+      
+        className=" text-white border-neutral-200 dark:border-slate-800 px-3 p-3 bg-gradient-to-r from-[#0844ff] to-[#4793fc] hover:bg-gradient-to-r hover:from-white hover:to-white hover:text-[#4793fc] text-[15px] rounded-[30px]"
       >
-       <Link href="/users">Chat with Ganak</Link> 
-      </Button>
+       Chat with Ganak 
+      </button>
+      </div>
     </motion.div>
-  </AuroraBackground>
+    </WavyBackground>
   )
 }
 
