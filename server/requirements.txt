@@ -13,6 +13,7 @@ numexpr
 serpapi
 google-search-results
 langchain-mongodb
+tavily-python
 
 # FastAPI Packages
 
