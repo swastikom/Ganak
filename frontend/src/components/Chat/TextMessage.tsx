@@ -8,6 +8,7 @@ import useBot from "../../hooks/useBot";
 import { ChatMessageType } from "../../store/store";
 import Markdown from "react-markdown";
 import CodeHighlight from "../CodeHighlight/CodeHighlight";
+import { IonIcon } from "@ionic/react";
 
 type Props = {
   index: number;
@@ -24,7 +25,7 @@ export default function TextMessage({ index, chat }: Props) {
     <>
       <div className="flex items-start w-full">
         <div className="mr-4  rounded-md flex items-center flex-shrink-0">
-          <Avatar className=" h-11 w-11" src="/imgs/bot.webp" />
+          <Avatar className=" h-9 w-9 mb-3" src="gemini-star.png" />
         </div>
 
         {!result && !error ? (
@@ -72,11 +73,11 @@ export default function TextMessage({ index, chat }: Props) {
             className="edit md:ml-8 text-gray-500 dark:text-gray-200 text-xl"
             onClick={() => copy(result)}
           >
-            {/* <IonIcon icon={clipboardOutline} /> */}
+            <IonIcon icon={clipboardOutline} />
           </button>
         ) : (
           <span className="dark:text-gray-200 text-gray-500 text-xl">
-            {/* <IonIcon icon={checkmarkOutline} /> */}
+            <IonIcon icon={checkmarkOutline} />
           </span>
         )}
       </div>

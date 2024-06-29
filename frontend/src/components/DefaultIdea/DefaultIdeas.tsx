@@ -19,12 +19,13 @@ const defaultIdeas = [
 
 export default function DefaultIdeas({ visible = true }) {
   return (
-    <div className={`row1 ${visible ? "block" : "hidden"}`}>
-      <DefaultIdea ideas={defaultIdeas.slice(0, 2)} />
-      <DefaultIdea
+    <div className={`flex justify-between w-full   ${visible ? "block" : "hidden"}`}>
+      
+      <DefaultIdea ideas={defaultIdeas} />
+      {/* <DefaultIdea
         ideas={defaultIdeas.slice(2, 4)}
         myclassNames="hidden md:visible"
-      />
+      /> */}
     </div>
   );
 }

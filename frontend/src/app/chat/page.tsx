@@ -11,6 +11,8 @@ import Chats from "@/components/Chat/Chats";
 import GptIntro from "@/components/ui/GptIntro";
 import DefaultIdeas from "@/components/DefaultIdea/DefaultIdeas";
 import UserQuery from "@/components/UserInput/UserQuery";
+import { IonIcon } from "@ionic/react";
+import { addOutline, menuOutline } from "ionicons/icons";
 
 
 
@@ -41,13 +43,13 @@ function App() {
           <i className="fa-regular fa-window-maximize rotate-90"></i>
         </button>
       </div>
-      <div className="p-3 z-10 flex items-center justify-between bg-[#202123] dark:bg-[#343541] border-b sticky top-0  text-gray-300 md:hidden">
+      <div className="p-3 z-10 flex items-center justify-between bg-black border-b sticky top-0  text-gray-300 md:hidden">
         <button onClick={() => setActive(true)} className=" text-2xl flex">
-        //  
+          <IonIcon icon={menuOutline} />
         </button>
         <h2>New chat</h2>
         <button className="text-2xl flex items-center" onClick={addNewChat}>
-        //   
+          <IonIcon icon={addOutline} />
         </button>
       </div>
       <main
@@ -59,45 +61,31 @@ function App() {
         {isChatsVisible && <Chats />}
         <div
           className={classNames(
-            "fixed left-0 px-2  right-0 transition-all duration-500 bottom-0 dark:shadow-lg py-1 shadow-md backdrop-blur-sm bg-white/10 dark:bg-dark-primary/10",
+            "fixed left-0 px-2  right-0 transition-all duration-500 bottom-0 dark:shadow-lg py-1 shadow-md backdrop-blur-sm bg-black dark:bg-dark-primary/10",
             {
-              "dark:bg-dark-primary bg-white": isChatsVisible,
+              "dark:bg-black ": isChatsVisible,
               "md:ml-[260px]": active,
             }
           )}
         >
-          <div className="max-w-2xl md:max-w-[calc(100% - 260px)] mx-auto">
+          <div className="max-w-2xl md:max-w-[50%] mx-auto">
             {!isChatsVisible && (
               <>
+                <div className="mb-[100px] ">
+                  <h1 className="text-7xl w-fit font-medium bg-gradient-to-r from-[#1d8efc] to-[#e85169] text-transparent bg-clip-text">Hello, Niranjan</h1>
+                  <p>Share your problem with us. </p>
+                </div>
                 <DefaultIdeas />
               </>
             )}
 
             <div className="dark:bg-inherit">
               <UserQuery />
-              <footer className="info text-sm py-2 text-gray-700 dark:text-white text-center">
-                Made With
-                <span className="mx-2">
-                  <i
-                    className="fas fa-heart text-red-500"
-                    aria-hidden="true"
-                  ></i>
-                </span>
-                By
-                <a
-                  href="https://www.prasadbro.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-2 underline"
-                >
-                  Team Ganak
-                </a>
-              </footer>
+              
             </div>
           </div>
         </div>
       </main>
-      
     </div>
   );
 }
