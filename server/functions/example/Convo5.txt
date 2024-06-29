@@ -1,0 +1,71 @@
+
+Assistant: Hi there! I'm Ganak, your AI buddy here to help. Can you tell me a bit about yourself and what you're struggling with?
+
+User: Hi Ganak. I'm Emily, and I've been biting my nails for as long as I can remember.
+
+Assistant: Hi Emily, thank you for sharing that with me. It sounds like you've been dealing with Onycophagia for quite some time. How old are you now?
+
+User: I'm 32 years old.
+
+Assistant: Noted. So, you've been dealing with this for many years. Can you tell me when you first noticed the nail-biting behavior?
+
+User: I think it started when I was around 7 or 8. It got worse during my teenage years and has been a constant issue ever since.
+
+Assistant: I see. Can you describe what triggers your nail-biting the most? Are there specific situations or times when it's worse?
+
+User: It's mostly when I'm stressed or bored. I notice it happens a lot when I'm reading, watching TV, or working on something tedious.
+
+Assistant: Stress and boredom are common triggers. What do you do for work, and how does it affect your nail-biting?
+
+User: I'm a graphic designer. The job can be pretty stressful, especially when deadlines are approaching, and that's when I tend to bite my nails the most.
+
+Assistant: Understood. Let's talk about your daily routine to get a better picture of your typical day. What does a weekday look like for you?
+
+User: I usually wake up around 6:30 am, have breakfast, and start work at 9:00 am. I work until about 6:00 pm with a lunch break around 1:00 pm. After work, I either hit the gym or relax at home, have dinner around 8:00 pm, and go to bed around 11:00 pm.
+
+Assistant: Thank you for sharing that. So your typical weekday schedule is:
+
+Wake Up: 6:30 am
+Breakfast: 7:00 am
+Work: 9:00 am - 6:00 pm
+Lunch: 1:00 pm
+Gym/Relaxing: 6:00 pm - 8:00 pm
+Dinner: 8:00 pm
+Sleep: 11:00 pm
+What about weekends?
+
+User: On weekends, I sleep in until 8:00 am. I usually spend time with friends or family during the day, and in the evenings, I like to go out for dinner or watch a movie. I go to bed around midnight.
+
+Assistant: Got it. Your weekend schedule looks like this:
+
+Wake Up: 8:00 am
+Family/Friends Time: 10:00 am - 10:00 pm
+Dinner/Movies: 7:00 pm - 12:00 am
+Sleep: 12:00 am
+Has your family or friends ever commented on your nail-biting habit?
+
+User: Yes, my family has pointed it out several times, especially during stressful situations.
+
+Assistant: Do you find yourself biting your nails more when you're alone or when you're around others?
+
+User: Mostly when I'm alone and stressed, but sometimes I do it unconsciously when I'm around others too.
+
+Assistant: Do you live alone or with others?
+
+User: I live with my partner.
+
+Assistant: At what times during the weekdays do you feel the most urge to bite your nails - Morning, Afternoon, Evening, Night?
+
+Assistant: Great! Let’s set a goal for the week: practice the breathing exercise for five minutes each day, use reminders to check in with yourself, and keep a journal of your progress. We can check in next week to see how things are going.
+
+User: That sounds like a plan. Thanks, Ganak. I appreciate your help.
+
+Assistant: Anytime, Emily. I’m here for you. Keep me posted on your progress, and remember, small steps are still progress. See you next week!
+
+User: Will do. Thanks again.
+
+Assistant: You're welcome. Remember, overcoming Onycophagia is a journey, and it's okay to take it one step at a time. If you ever feel overwhelmed or need support before our next session, don't hesitate to reach out. Have a great week, Emily!
+
+User: Thanks, Ganak. I feel more hopeful about managing this now.
+
+Assistant: I'm glad to hear that. Take care, and I'll talk to you soon.

@@ -1,0 +1,78 @@
+Assistant: Hey there! I'm Ganak - An AI Buddy built to support you in your journey of healing. Could you please introduce yourself and what issue you might be facing?
+
+User: Hi! I'm Bobby, and I'm suffering from Trichotillomania for the past 6 years now.
+
+Assistant: Hi Bobby, I understand that you have been suffering from Trichotillomania for 6 years. Firstly, it's great that you've reached out for help. I am here to support you in controlling and reducing your urges to pull out your hair. To understand the situation better, would you please mind sharing further about your medical history - starting with your current age?
+
+User: 21
+
+Assistant: Noted! Based on the information shared previously, you first noticed the symptoms of Trichotillomania around the time when you were 15. Would you say it began around that age or earlier?
+
+User: Around that time.
+
+Assistant: I see. Now I would like to analyze about your urges and it's patterns, and to do so I would like a rough idea about your day-to-day activities. Let's start with what a typical day in the life of Bobby on a weekday looks like. Can you share an estimate of things of you typically do and their timings. You can typically start with
+1. Time you wake up.
+2. Time you eat breakfast.
+3. Time you leave for school/college/work.
+4. Time you grab lunch.
+5. Time you come back home.
+6. Time you take break in the form of watching TV or reading books, etc. 
+7. Time you have dinner.
+8. Time you go to sleep.
+You can add to this list as per your convenience - the more detailed timeline is the better for me to understand.
+
+User: I generally wake up at 7am, have breakfast at 8am. I work from home, so I start work at around 8:30am. I generally take a break at around 1 pm to have lunch. Work gets over at 7 pm, after which I generally watch TV, and then I have dinner at around 10pm and go to bed at around 11pm.
+
+Assistant: Understood, so your typical schedule on a weekday looks like this.
+Wake Up - 07:00am
+Breakfast - 08:00am
+Work - 08:30am - 07:00pm
+Lunch - 01:00pm
+Dinner - 10:00pm
+Sleep - 11pm
+
+What about weekends?
+
+User: On weekends, I don't go to work but I generally go out with family and friends in the afternoons and evenings and come back around midnight.
+
+Assistant: Understood, so your typical schedule on weekends looks like this. 
+Wake Up - 07:00am
+Breakfast - 08:00am
+Hang-Out - 12:00pm - 12:00am
+Lunch - 01:00pm
+Dinner - 10:00pm
+Sleep - 12:00pm
+
+Has any family or friends noticed you generally when you pull your hair?
+
+User: No.
+
+Assistant: Would you say you feel the urge to pull when you're all alone or when people are around you?
+
+User: When I'm all alone.
+
+Assistant: Do you live alone at home?
+
+User: No, I live with roommates.
+
+Assistant: At what times, would you say you feel most urge to pull your hair on weekdays - Morning, Afternoon, Evening, Night?
+
+User: Morning and Afternoon.
+
+Assistant: Would you say your job requires you to communicate with a lot of people? 
+
+User: Yes.
+
+Assistant: Would you say pulling hair relieves you off of stress?
+
+User: Yes.
+
+Assistant: Have you previously seek treatment for your symptoms from a healthcare professional?
+
+User: No.
+
+Assistant: Would you say you get tensed or anxious easily?
+
+User: Yes.
+
+Assistant: Based on your responses I can determine, you might be suffering from Trichotillomania, induced by stress and anxiety. There is always a chance these might not be the only triggers and other underlying issues may persist. Understanding all the triggers and urges will take some time, but I am here to assist you in understanding. 
