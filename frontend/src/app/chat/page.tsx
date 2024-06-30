@@ -12,7 +12,7 @@ import GptIntro from "@/components/ui/GptIntro";
 import DefaultIdeas from "@/components/DefaultIdea/DefaultIdeas";
 import UserQuery from "@/components/UserInput/UserQuery";
 import { IonIcon } from "@ionic/react";
-import { addOutline, menuOutline } from "ionicons/icons";
+import { addOutline, chevronBackOutline, codeOutline, menuOutline } from "ionicons/icons";
 
 
 
@@ -40,7 +40,7 @@ function App() {
           className="shadow fixed p-2 h-8 w-8 text-sm top-4 left-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center"
           onClick={() => setActive(true)}
         >
-          <i className="fa-regular fa-window-maximize rotate-90"></i>
+          <IonIcon icon={chevronBackOutline} />
         </button>
       </div>
       <div className="p-3 z-10 flex items-center justify-between bg-black border-b sticky top-0  text-gray-300 md:hidden">

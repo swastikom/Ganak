@@ -8,6 +8,7 @@ import {
   settingsOutline,
   ellipsisHorizontalOutline,
   closeOutline,
+  chevronForwardOutline,
 } from "ionicons/icons";
 import useChat, { ModalList, useAuth, useSettings } from "../../store/store";
 import Settings from "../modals/Settings";
@@ -81,7 +82,7 @@ export default function Navbar({
               className="border h-10 w-10 border-gray-500 rounded-md p-2 hidden md:inline-block text-gray-200"
               onClick={() => setActive(false)}
             >
-              <i className="fa-regular fa-window-maximize rotate-90"></i>
+              <IonIcon icon={chevronForwardOutline} />
             </button>
           </div>
           <div className="history overflow-y-auto h-[calc(100%-60px)]">
@@ -94,7 +95,7 @@ export default function Navbar({
                 type="button"
                 className="px-2 relative py-2 inline-flex w-full items-center hover:bg-gray-700 transition group "
               >
-                <Avatar className=" h-11 w-11" />
+                <Avatar src="pngwing.com.png" className=" h-11 w-11" />
 
                 <span className="p-2">{name}</span>
                 <span className=" ml-auto  text-gray-400 text-2xl ">
