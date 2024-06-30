@@ -68,7 +68,7 @@ async def get_chat_response(
             memory.save_context({"input": context.inputs.input}, {"output": context.outputs.output})
 
         # Pass the chat_input attribute to the answer_question_gemini function
-        chat_res = answer_question_gemini(req_body.chat_input, str(current_user.age), current_user.gender)  
+        chat_res = answer_question_gemini(req_body.chat_input)  
 
         # Add the new context to the chat
         new_context = Contexts(inputs=Inputs(input=req_body.chat_input), outputs=Outputs(output=chat_res))
