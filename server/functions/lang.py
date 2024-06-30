@@ -38,7 +38,7 @@ def family_medical_history():
 
 def schedule():
     schedule = input("I see. Now I would like to analyze about your urges and it's patterns, and to do so I would like a rough idea about your day-to-day activities. Let's start with what a typical day in the life of Bobby on a weekday looks like. Can you share an estimate of things of you typically do and their timings. You can typically start with 1. Time you wake up, 2. Time you eat breakfast ,3. Time you leave for school/college/work ,4. Time you grab lunch, 5. Time you come back home, 6. Time you take break in the form of watching TV or reading books, etc. ,7. Time you have dinner, 8. Time you go to sleep. You can add to this list as per your convenience - the more detailed timeline is the better for me to understand.")
-    weekend_schedule = ("Thank you for sharing that with me. To understand your situation better, could you please tell me about weekend activities as well?")
+    weekend_schedule = input("Thank you for sharing that with me. To understand your situation better, could you please tell me about weekend activities as well?")
 
 def living_situation():
     living_situation = input("Could you please tell me if you live alone?")
