@@ -16,9 +16,7 @@ class CreateUserRequest(BaseModel):
     secondname: str
     email: EmailStr
     password: str
-    age: int
     address: str
-    gender: str
 
 class LoginData(BaseModel):
     email: EmailStr
@@ -28,6 +26,4 @@ class UpdateUserRequest(BaseModel):
     firstname: str
     secondname: str
     email: EmailStr
-    age: int
     address: str
-    gender: str

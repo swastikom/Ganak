@@ -38,10 +38,8 @@ async def create_user(request_data: CreateUserRequest):
                 firstname = request_data.firstname,
                 secondname = request_data.secondname,
                 email = request_data.email,
-                password = hashed_password,  
-                age = request_data.age,
+                password = hashed_password, 
                 address = request_data.address,
-                gender = request_data.gender,
                 createdAt=datetime.now(),
                 updatedAt=datetime.now()
             )
