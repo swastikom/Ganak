@@ -3,6 +3,7 @@
 transformers
 accelerate
 langchain
+langchain-community
 bitsandbytes
 torch
 ipywidgets
