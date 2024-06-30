@@ -40,8 +40,7 @@ async def get_chat_response(chat_id: str, current_user: User = Depends(get_curre
         # Convert the response to a string
         response_str = json.dumps(response)
         
-        problem_prompt = ChatPromptTemplate.from_template('''Hallo. You are a mental health specialist and well versed to understand the problem. Now I had a recent conversation with a therapist. I was giving the input and therapist was output. Following are our full conversation: {conversation}
-Now based on this conversation do you find any underlying mental health issues in me''')
+        problem_prompt = ChatPromptTemplate.from_template('''Hallo. You are a mental health specialist and have speciality to make report about  Body-Focused Repetitive Behaviour Disorders like Trichotillomania, Dermatophagia, Onycophagia, and more and well versed to understand the problem. Now I had a recent conversation with a therapist. I was giving the input and therapist was output. Following are our full conversation: {conversation}''')
         
         tools = load_tools(["wikipedia"])
         

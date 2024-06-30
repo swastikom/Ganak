@@ -30,7 +30,7 @@ async def save_contexts( prompt: ChatInput,current_user: User = Depends(get_curr
     
     # try:
         
-        output = answer_question_gemini(prompt.chat_input,str(current_user.age), current_user.gender)  # Access the chat_input attribute
+        output = answer_question_gemini(prompt.chat_input)  # Access the chat_input attribute
 
         # Convert the request data into embedded documents
         contexts_list = [

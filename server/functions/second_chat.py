@@ -25,7 +25,7 @@ model = genai.GenerativeModel(model_name='gemini-1.5-pro',generation_config=gene
 chat = model.start_chat(history=[])
 
 
-def answer_question_gemini(question,age,gender):
+def answer_question_gemini(question):
     prompt = question
     response = chat.send_message(prompt, stream=True, safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
