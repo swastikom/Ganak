@@ -3,7 +3,7 @@ import requests
 import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.environ["API_KEY"])
+genai.configure(api_key="AIzaSyDSgKtXIi2b7ZaW-nBRI-dL6Yz9zgNN4ok")
 
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history=[])
@@ -81,6 +81,7 @@ def answer_question_gemini(name, medical, family_history, week_plans, living_con
     return answer
 
 
-answer_question_gemini(introduce_ganek, medical_history, family_medical_history, schedule, living_situation, family_relations, patterns, understand, issue)
+print(answer_question_gemini(introduce_ganek, medical_history, family_medical_history, schedule, living_situation, family_relations, patterns, understand, issue))
+
 def delete_chat_memory():
    chat.history.clear()
