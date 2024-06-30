@@ -36,7 +36,7 @@ export default function UserMessage({ chat, chatIndex }: Props) {
       <div className=" max-w-2xl mx-auto md:flex md:items-center group">
         <div className="flex items-start w-full max-w-[620px]">
           <div className="mr-4  rounded-md flex items-center flex-shrink-0">
-            <Avatar className=" h-11 w-11" />
+            <Avatar src="pngwing.com.png" className=" h-11 w-11" />
           </div>
 
           {!edit ? (
