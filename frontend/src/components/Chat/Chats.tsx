@@ -12,7 +12,7 @@ export default function Chats() {
     <div className="md:mt-10 w-full">
       <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <button className="px-3 py-2 bg-blue-600 rounded-[30px] ml-5">Check Your Score</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

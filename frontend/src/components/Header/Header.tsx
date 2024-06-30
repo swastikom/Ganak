@@ -12,9 +12,11 @@ export default function Header() {
   );
   return (
     <header className=" text-center my-2 text-sm dark:text-gray-300 border-b dark:border-none dark:shadow-md py-2 flex items-center justify-between px-2">
-      <div className="md:block hidden"></div>
+      <div className="md:block hidden">
+        <img src="ganak.png" alt="" className="h-11 w-11" />
+      </div>
       <div className=" flex items-center relative">
-        <span>Using ({model.toLocaleUpperCase()})</span>
+        {/* <span>Using ({model.toLocaleUpperCase()})</span> */}
         {useSystemMessageForAllChats && (
           <span className=" flex text-xl ml-2 group cursor-pointer">
             <IonIcon icon={informationCircleOutline} />

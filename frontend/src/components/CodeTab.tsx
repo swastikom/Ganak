@@ -16,11 +16,11 @@ const CodeTab = () => {
           </div>
         }
         badge={
-          <Link href="https://peerlist.io/manuarora">
+          <Link href="#">
             <Badge className="h-10 w-10 transform -rotate-12" />
           </Link>
         }
-        src={`/screen.webp`}
+        src={`/ganakgpt.webp`}
         showGradient={false}
       />
     </div>
