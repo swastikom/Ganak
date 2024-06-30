@@ -14,7 +14,7 @@ from functions.auth import get_current_user
 from models.chats_model import ChatInput
 
 import os
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDSgKtXIi2b7ZaW-nBRI-dL6Yz9zgNN4ok"
+api_key = os.environ.get("GEMINI_API_KEY")
 
 memory = ConversationBufferMemory(return_messages=True)
 

@@ -30,7 +30,7 @@ async def save_contexts( prompt: ChatInput,current_user: User = Depends(get_curr
     
     # try:
         
-        output = answer_question_gemini(prompt.chat_input)  # Access the chat_input attribute
+        output = answer_question_gemini(prompt.chat_input,str(current_user.age), current_user.gender)  # Access the chat_input attribute
 
         # Convert the request data into embedded documents
         contexts_list = [
@@ -68,7 +68,7 @@ async def get_chat_response(
             memory.save_context({"input": context.inputs.input}, {"output": context.outputs.output})
 
         # Pass the chat_input attribute to the answer_question_gemini function
-        chat_res = answer_question_gemini(req_body.chat_input)  
+        chat_res = answer_question_gemini(req_body.chat_input, str(current_user.age), current_user.gender)  
 
         # Add the new context to the chat
         new_context = Contexts(inputs=Inputs(input=req_body.chat_input), outputs=Outputs(output=chat_res))

@@ -9,15 +9,19 @@ from langchain_google_genai import HarmBlockThreshold, HarmCategory
 # Load environment variables from .env file
 load_dotenv()
 
-genai.configure(api_key="AIzaSyDSgKtXIi2b7ZaW-nBRI-dL6Yz9zgNN4ok")
+
+api_key = os.environ.get("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
 
 
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history=[])
 
 
-def answer_question_gemini(question):
-    prompt = "Your name is Ganak. You are a great mental health professional and therapist. You are good at listening and enthusiast about learning about the problems of the person you are chatting with and providing solution. Now the person is telling the following to you: "+question 
+def answer_question_gemini(question,age,gender):
+    prompt = """
+      You are Ganak, an AI Assistant built to support individuals suffering Body-Focused Repetitive Behaviour Disorders like Trichotillomania, Dermatophagia, Onycophagia, and more. Your mission is to help those individuals control and reduce their urges gradually in a safe manner, while also helping them get a perspective towards the underlying causes based on their day-to-day schedule, activities and the conversations they have with you. Finally, based on the user's need, you need tomatch users with a suitable medical practioner.
+    """ + question +"The age of the user is: "+age+ "and his gender is:"+gender
     response = chat.send_message(prompt, stream=True, safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,

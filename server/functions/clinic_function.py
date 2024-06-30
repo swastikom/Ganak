@@ -1,6 +1,8 @@
 import http.client
 import json
+import os
 
+api_key = os.environ.get("SERPER_API_KEY")
 
 def getClinic(query: str):
   conn = http.client.HTTPSConnection("google.serper.dev")
@@ -8,7 +10,7 @@ def getClinic(query: str):
     "q": query
   })
   headers = {
-    'X-API-KEY': 'cc1aab846bdfa504db2c521f17b8132075d0be1d',
+    'X-API-KEY': api_key,
     'Content-Type': 'application/json'
   }
   conn.request("POST", "/places", payload, headers)
