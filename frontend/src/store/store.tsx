@@ -6,13 +6,19 @@ import { produce } from "immer";
 import moment from "moment";
 import { ImageSize } from "../services/chatService";
 
-const modalsList = [
-  ""
-] as const;
+const modalsList = [""] as const;
+
+// Helper function to safely access localStorage
+const getLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    return window.localStorage;
+  }
+  return null;
+};
 
 export interface ChatMessageType {
   role: "user" | "assistant" | "system";
-  content: string ;
+  content: string;
   type: "text" | "image_url";
   id: string;
 }
@@ -100,124 +106,16 @@ export interface AuthType {
   user: UserType;
 }
 
-// const useChat = create<ChatType>((set, get) => ({
-//   chats: [],
-//   chatHistory: localStorage.getItem("chatHistory")
-//     ? JSON.parse(localStorage.getItem("chatHistory") as string)
-//     : [],
-//   addChat: (chat, index) => {
-//     set(
-//       produce((state: ChatType) => {
-//         if (index || index === 0) state.chats[index] = chat;
-//         else {
-//           state.chats.push(chat);
-//         }
-//       })
-//     );
-//     if (chat.role === "assistant" && chat.content) {
-//       get().saveChats();
-//     }
-//   },
-//   editChatMessage: (chat, updateIndex) => {
-//     set(
-//       produce((state: ChatType) => {
-//         state.chats[updateIndex].content = chat;
-//       })
-//     );
-//   },
-//   addNewChat: () => {
-//     if (get().chats.length === 0) return;
-//     set(
-//       produce((state: ChatType) => {
-//         state.chats = [];
-//       })
-//     );
-//   },
-
-//   saveChats: () => {
-//     let chat_id = get().chats[0].id;
-//     let title;
-//     if (localStorage.getItem(chat_id)) {
-//       const data = JSON.parse(localStorage.getItem(chat_id) ?? "");
-//       if (data.isTitleEdited) {
-//         title = data.title;
-//       }
-//     }
-//     const data = {
-//       id: chat_id,
-//       createdAt: new Date().toISOString(),
-//       chats: get().chats,
-//       title: title ? title : get().chats[0].content,
-//       isTitleEdited: Boolean(title),
-//     };
-
-//     localStorage.setItem(chat_id, JSON.stringify(data));
-//     if (get().chatHistory.includes(chat_id)) return;
-//     localStorage.setItem(
-//       "chatHistory",
-//       JSON.stringify([...get().chatHistory, chat_id])
-//     );
-//     set(
-//       produce((state: ChatType) => {
-//         state.chatHistory.push(chat_id);
-//       })
-//     );
-//   },
-//   viewSelectedChat: (chatId) => {
-//     set(
-//       produce((state: ChatType) => {
-//         if (!localStorage.getItem(chatId)) return;
-//         state.chats =
-//           JSON.parse(localStorage.getItem(chatId) ?? "")?.chats ?? [];
-//       })
-//     );
-//   },
-//   resetChatAt: (index) => {
-//     set(
-//       produce((state: ChatType) => {
-//         state.chats[index].content = "";
-//       })
-//     );
-//   },
-//   handleDeleteChats: (chatid) => {
-//     set(
-//       produce((state: ChatType) => {
-//         state.chatHistory = state.chatHistory.filter((id) => id !== chatid);
-//         state.chats = [];
-//         localStorage.removeItem(chatid);
-//         localStorage.setItem("chatHistory", JSON.stringify(state.chatHistory));
-//       })
-//     );
-//   },
-//   editChatsTitle: (id, title) => {
-//     set(
-//       produce((state: ChatType) => {
-//         const chat = JSON.parse(localStorage.getItem(id) ?? "");
-//         chat.title = title;
-//         chat.isTitleEdited = true;
-//         localStorage.setItem(id, JSON.stringify(chat));
-//       })
-//     );
-//   },
-//   clearAllChats: () => {
-//     set(
-//       produce((state: ChatType) => {
-//         state.chatHistory.forEach((id) => {
-//           localStorage.removeItem(id);
-//         });
-//         state.chats = [];
-//         state.chatHistory = [];
-//         localStorage.removeItem("chatHistory");
-//       })
-//     );
-//   },
-// }));
-
 const useChat = create<ChatType>((set, get) => ({
   chats: [],
-  chatHistory: typeof window !== 'undefined' && localStorage.getItem("chatHistory")
-    ? JSON.parse(localStorage.getItem("chatHistory") as string)
-    : [],
+  chatHistory: (() => {
+    const storage = getLocalStorage();
+    if (storage) {
+      const chatHistory = storage.getItem("chatHistory");
+      return chatHistory ? JSON.parse(chatHistory) : [];
+    }
+    return [];
+  })(),
   addChat: (chat, index) => {
     set(
       produce((state: ChatType) => {
@@ -246,14 +144,17 @@ const useChat = create<ChatType>((set, get) => ({
       })
     );
   },
-
   saveChats: () => {
     let chat_id = get().chats[0].id;
     let title;
-    if (typeof window !== 'undefined' && localStorage.getItem(chat_id)) {
-      const data = JSON.parse(localStorage.getItem(chat_id) ?? "");
-      if (data.isTitleEdited) {
-        title = data.title;
+    const storage = getLocalStorage();
+    if (storage) {
+      const storedChat = storage.getItem(chat_id);
+      if (storedChat) {
+        const data = JSON.parse(storedChat);
+        if (data.isTitleEdited) {
+          title = data.title;
+        }
       }
     }
     const data = {
@@ -264,30 +165,31 @@ const useChat = create<ChatType>((set, get) => ({
       isTitleEdited: Boolean(title),
     };
 
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(chat_id, JSON.stringify(data));
-      if (get().chatHistory.includes(chat_id)) return;
-      localStorage.setItem(
-        "chatHistory",
-        JSON.stringify([...get().chatHistory, chat_id])
-      );
+    if (storage) {
+      storage.setItem(chat_id, JSON.stringify(data));
+      if (!get().chatHistory.includes(chat_id)) {
+        const updatedHistory = [...get().chatHistory, chat_id];
+        storage.setItem("chatHistory", JSON.stringify(updatedHistory));
+        set(
+          produce((state: ChatType) => {
+            state.chatHistory = updatedHistory;
+          })
+        );
+      }
     }
-
-    set(
-      produce((state: ChatType) => {
-        state.chatHistory.push(chat_id);
-      })
-    );
   },
   viewSelectedChat: (chatId) => {
-    set(
-      produce((state: ChatType) => {
-        if (typeof window !== 'undefined' && localStorage.getItem(chatId)) {
-          state.chats =
-            JSON.parse(localStorage.getItem(chatId) ?? "")?.chats ?? [];
-        }
-      })
-    );
+    const storage = getLocalStorage();
+    if (storage) {
+      const storedChat = storage.getItem(chatId);
+      if (storedChat) {
+        set(
+          produce((state: ChatType) => {
+            state.chats = JSON.parse(storedChat)?.chats ?? [];
+          })
+        );
+      }
+    }
   },
   resetChatAt: (index) => {
     set(
@@ -299,51 +201,50 @@ const useChat = create<ChatType>((set, get) => ({
   handleDeleteChats: (chatid) => {
     set(
       produce((state: ChatType) => {
-        console.log(`Before deletion, chatHistory: ${JSON.stringify(state.chatHistory)}`); // Debugging log
         state.chatHistory = state.chatHistory.filter((id) => id !== chatid);
-        console.log(`After deletion, chatHistory: ${JSON.stringify(state.chatHistory)}`); // Debugging log
         state.chats = [];
-        if (typeof window !== 'undefined') {
-          localStorage.removeItem(chatid);
-          localStorage.setItem("chatHistory", JSON.stringify(state.chatHistory));
+        const storage = getLocalStorage();
+        if (storage) {
+          storage.removeItem(chatid);
+          storage.setItem("chatHistory", JSON.stringify(state.chatHistory));
         }
       })
     );
   },
   editChatsTitle: (id, title) => {
-    set(
-      produce((state: ChatType) => {
-        if (typeof window !== 'undefined') {
-          const chat = JSON.parse(localStorage.getItem(id) ?? "");
-          chat.title = title;
-          chat.isTitleEdited = true;
-          localStorage.setItem(id, JSON.stringify(chat));
-        }
-      })
-    );
+    const storage = getLocalStorage();
+    if (storage) {
+      const chatData = storage.getItem(id);
+      if (chatData) {
+        const chat = JSON.parse(chatData);
+        chat.title = title;
+        chat.isTitleEdited = true;
+        storage.setItem(id, JSON.stringify(chat));
+      }
+    }
   },
   clearAllChats: () => {
     set(
       produce((state: ChatType) => {
-        if (typeof window !== 'undefined') {
+        const storage = getLocalStorage();
+        if (storage) {
           state.chatHistory.forEach((id) => {
-            localStorage.removeItem(id);
+            storage.removeItem(id);
           });
-          state.chats = [];
-          state.chatHistory = [];
-          localStorage.removeItem("chatHistory");
+          storage.removeItem("chatHistory");
         }
+        state.chats = [];
+        state.chatHistory = [];
       })
     );
   },
 }));
 
-
 const useAuth = create<AuthType>()(
   persist(
     (set) => ({
-      token: localStorage.getItem("token") || "",
-      apikey: localStorage.getItem("apikey") || "",
+      token: "",
+      apikey: "",
       user: {
         name: "Your name?",
         email: "",
@@ -369,7 +270,10 @@ const useAuth = create<AuthType>()(
             state.apikey = apikey;
           })
         );
-        localStorage.setItem("apikey", apikey);
+        const storage = getLocalStorage();
+        if (storage) {
+          storage.setItem("apikey", apikey);
+        }
       },
     }),
     {
@@ -480,7 +384,7 @@ const useTheme = create<ThemeType>()(
 );
 
 export const months = [
-  "Januray",
+  "January",
   "February",
   "March",
   "April",
@@ -505,47 +409,47 @@ export const selectChatsHistory = (state: ChatType) => {
     string,
     { title: string; id: string; month: string; month_id: number }[]
   > = {};
-  state.chatHistory.forEach((chat_id) => {
-    const { title, id, createdAt } = JSON.parse(
-      localStorage.getItem(chat_id) as string
-    );
-    const myDate = moment(createdAt, "YYYY-MM-DD");
-    const currentDate = moment();
-    const month = myDate.toDate().getMonth();
+  const storage = getLocalStorage();
+  if (storage) {
+    state.chatHistory.forEach((chat_id) => {
+      const chatData = storage.getItem(chat_id);
+      if (chatData) {
+        const { title, id, createdAt } = JSON.parse(chatData);
+        const myDate = moment(createdAt, "YYYY-MM-DD");
+        const currentDate = moment();
+        const month = myDate.toDate().getMonth();
 
-    const data = {
-      title,
-      id,
-      month: months[month],
-      month_id: month,
-    };
+        const data = {
+          title,
+          id,
+          month: months[month],
+          month_id: month,
+        };
 
-    if (myDate.isSame(currentDate.format("YYYY-MM-DD"))) {
-      if (!sortedData.hasOwnProperty("Today")) {
-        sortedData["Today"] = [];
+        if (myDate.isSame(currentDate.format("YYYY-MM-DD"))) {
+          if (!sortedData.hasOwnProperty("Today")) {
+            sortedData["Today"] = [];
+          }
+          sortedData["Today"].push(data);
+        } else if (currentDate.subtract(7, "days").isBefore(myDate)) {
+          if (!sortedData.hasOwnProperty("Previous 7 Days")) {
+            sortedData["Previous 7 Days"] = [];
+          }
+          sortedData["Previous 7 Days"].push(data);
+        } else if (currentDate.subtract(30, "days").isBefore(myDate)) {
+          if (!sortedData.hasOwnProperty("Previous 30 Days")) {
+            sortedData["Previous 30 Days"] = [];
+          }
+          sortedData["Previous 30 Days"].push(data);
+        } else {
+          if (!sortedData.hasOwnProperty(months[month])) {
+            sortedData[months[month]] = [];
+          }
+          sortedData[months[month]].push(data);
+        }
       }
-      sortedData["Today"].push(data);
-      return;
-    } else if (currentDate.subtract(7, "days").isBefore(myDate)) {
-      if (!sortedData.hasOwnProperty("Previous 7 Days")) {
-        sortedData["Previous 7 Days"] = [];
-      }
-      sortedData["Previous 7 Days"].push(data);
-      return;
-    } else if (currentDate.subtract(30, "days").isBefore(myDate)) {
-      if (!sortedData.hasOwnProperty("Previous 30 Days")) {
-        sortedData["Previous 30 Days"] = [];
-      }
-      sortedData["Previous 30 Days"].push(data);
-      return;
-    } else {
-      if (!sortedData.hasOwnProperty(months[month])) {
-        sortedData[months[month]] = [];
-      }
-      sortedData[months[month]].push(data);
-    }
-  });
-  // const history = Object.keys(sortedData);
+    });
+  }
   return sortedData;
 };
 
