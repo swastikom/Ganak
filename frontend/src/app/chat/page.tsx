@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
-
 
 import classNames from "classnames";
 import useChat, { chatsLength, useAuth, useTheme } from "@/store/store";
@@ -12,15 +11,17 @@ import GptIntro from "@/components/ui/GptIntro";
 import DefaultIdeas from "@/components/DefaultIdea/DefaultIdeas";
 import UserQuery from "@/components/UserInput/UserQuery";
 import { IonIcon } from "@ionic/react";
-import { addOutline, chevronBackOutline, codeOutline, menuOutline } from "ionicons/icons";
-
-
+import {
+  addOutline,
+  chevronBackOutline,
+  codeOutline,
+  menuOutline,
+} from "ionicons/icons";
 
 function App() {
   const [active, setActive] = useState(false);
   const isChatsVisible = useChat(chatsLength);
   const addNewChat = useChat((state: any) => state.addNewChat);
-  const userHasApiKey = useAuth((state: any) => state.apikey);
   const [theme] = useTheme((state: any) => [state.theme]);
 
   useEffect(() => {
@@ -72,7 +73,9 @@ function App() {
             {!isChatsVisible && (
               <>
                 <div className="mb-[100px] ">
-                  <h1 className="text-7xl w-fit font-medium bg-gradient-to-r from-[#1d8efc] to-[#e85169] text-transparent bg-clip-text">Hello, Niranjan</h1>
+                  <h1 className="text-7xl w-fit font-medium bg-gradient-to-r from-[#1d8efc] to-[#e85169] text-transparent bg-clip-text">
+                    Hello, Niranjan
+                  </h1>
                   <p>Share your problem with us. </p>
                 </div>
                 <DefaultIdeas />
@@ -81,7 +84,6 @@ function App() {
 
             <div className="dark:bg-inherit">
               <UserQuery />
-              
             </div>
           </div>
         </div>

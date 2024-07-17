@@ -5,15 +5,17 @@ export default function useWindowSize() {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+  window.addEventListener("resize", handleResize);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      function handleResize() {
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      }
-      window.addEventListener("resize", handleResize);
+
       handleResize();
       return () => window.removeEventListener("resize", handleResize);
     }
