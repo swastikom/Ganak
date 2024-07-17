@@ -3,62 +3,56 @@ import { ChatMessageType, ModalList, useSettings } from "../store/store";
 const apiUrl = "https://api.openai.com/v1/chat/completions";
 const IMAGE_GENERATION_API_URL = "https://api.openai.com/v1/images/generations";
 
+const BACKEND_URL = "https://ganak-xwdx.onrender.com";
+
 export async function fetchResults(
   messages: Omit<ChatMessageType, "id" | "type">[],
   modal: string,
   signal: AbortSignal,
-  onData: (data: any) => void,
+  onData: (data: string) => void,
   onCompletion: () => void
 ) {
   try {
-    const response = await fetch(apiUrl, {
-      method: `POST`,
+    const authToken = localStorage.getItem("authToken");
+    console.log("Auth Token (first few characters):", authToken?.substring(0, 10));
+    if (!authToken) {
+      throw new Error("Auth token not found");
+    }
+
+    const response = await fetch(`${BACKEND_URL}/users/me/save_contexts`, {
+      method: 'POST',
       signal: signal,
       headers: {
-        "content-type": `application/json`,
-        accept: `text/event-stream`,
-        Authorization: `Bearer ${localStorage.getItem("apikey")}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
       },
       body: JSON.stringify({
-        model: useSettings.getState().settings.selectedModal,
-        temperature: 0.7,
-        stream: true,
-        messages: messages,
+        chat_input: messages[messages.length - 1].content,
       }),
     });
 
-    if (response.status !== 200) {
-      console.log(response);
-      throw new Error("Error fetching results");
+    console.log("Response status:", response.status);
+    console.log("Response headers:", Object.fromEntries(response.headers));
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Error data:", errorData);
+      throw new Error(errorData.detail || `Error fetching results: ${response.status}`);
     }
-    const reader: any = response.body?.getReader();
-    while (true) {
-      const { done, value } = await reader.read();
 
-      if (done) {
-        onCompletion();
-        break;
-      }
+    const data = await response.json();
+    console.log("Response data:", data);
 
-      let chunk = new TextDecoder("utf-8").decode(value, { stream: true });
-
-      const chunks = chunk.split("\n").filter((x: string) => x !== "");
-
-      chunks.forEach((chunk: string) => {
-        if (chunk === "data: [DONE]") {
-          return;
-        }
-        if (!chunk.startsWith("data: ")) return;
-        chunk = chunk.replace("data: ", "");
-        const data = JSON.parse(chunk);
-        if (data.choices[0].finish_reason === "stop") return;
-        onData(data.choices[0].delta.content);
-      });
+    if (data.response) {
+      onData(data.response);
+    } else {
+      console.warn("No response data received from the backend");
     }
+
+    onCompletion();
   } catch (error) {
-    if (error instanceof DOMException || error instanceof Error) {
-      throw new Error(error.message);
-    }
+    console.error("Error in fetchResults:", error);
+    throw error;
   }
 }
 
@@ -84,7 +78,6 @@ export type ImageSize =
   | "1024x1024"
   | "1280x720"
   | "1920x1080"
-  | "1024x1024"
   | "1792x1024"
   | "1024x1792";
 
@@ -106,7 +99,6 @@ export async function generateImage(
 
   const response = await fetch(IMAGE_GENERATION_API_URL, {
     method: `POST`,
-    // signal: signal,
     headers: {
       "content-type": `application/json`,
       accept: `text/event-stream`,
