@@ -48,8 +48,8 @@ export default function useBot({ index, chat }: Props) {
     function handleOnError(error: Error | string) {
       if (typeof error === "string") setError(error);
       else setError(error.message);
-      resultRef.current = "Sorry, looks like I'm having a bad day.";
-      setResult("Sorry, looks like I'm having a bad day.");
+      resultRef.current = "Sorry, currently I'm unavailable for your service. Please wait for while..";
+      setResult("Sorry, currently I'm unavailable for your service. Please wait for while..");
       addMessage();
     }
 
@@ -69,21 +69,21 @@ export default function useBot({ index, chat }: Props) {
       try {
         let prevChats = sendHistory
           ? chatsRef.current
-              .slice(0, index)
-              .filter((m: any) => m.type === "text")
-              .map((chat: any) => ({
-                role: chat.role,
-                content: chat.content,
-              }))
+            .slice(0, index)
+            .filter((m: any) => m.type === "text")
+            .map((chat: any) => ({
+              role: chat.role,
+              content: chat.content,
+            }))
           : [
-              {
-                role: chatsRef.current[index - 1].role,
-                content: chatsRef.current[index - 1].content,
-              },
-            ];
+            {
+              role: chatsRef.current[index - 1].role,
+              content: chatsRef.current[index - 1].content,
+            },
+          ];
         if (useForAllChats && systemMessage) {
           prevChats = [
-            { role: "system", content: systemMessage},
+            { role: "system", content: systemMessage },
             ...prevChats,
           ];
         }
